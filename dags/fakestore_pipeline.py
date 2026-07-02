@@ -26,6 +26,8 @@ def fakestore_pipeline():
     def create_tables():
         """Creates target database tables if they do not exist."""
         db_url = os.getenv("TARGET_DB_URL", "postgresql://airflow:airflow@postgres/airflow")
+        if db_url.startswith("postgresql+psycopg2://"):
+            db_url = db_url.replace("postgresql+psycopg2://", "postgresql://")
         print(f"Connecting to database to initialize tables...")
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
@@ -94,6 +96,8 @@ def fakestore_pipeline():
         users = response.json()
         
         db_url = os.getenv("TARGET_DB_URL", "postgresql://airflow:airflow@postgres/airflow")
+        if db_url.startswith("postgresql+psycopg2://"):
+            db_url = db_url.replace("postgresql+psycopg2://", "postgresql://")
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
         
@@ -137,6 +141,8 @@ def fakestore_pipeline():
         products = response.json()
         
         db_url = os.getenv("TARGET_DB_URL", "postgresql://airflow:airflow@postgres/airflow")
+        if db_url.startswith("postgresql+psycopg2://"):
+            db_url = db_url.replace("postgresql+psycopg2://", "postgresql://")
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
         
@@ -178,6 +184,8 @@ def fakestore_pipeline():
         carts = response.json()
         
         db_url = os.getenv("TARGET_DB_URL", "postgresql://airflow:airflow@postgres/airflow")
+        if db_url.startswith("postgresql+psycopg2://"):
+            db_url = db_url.replace("postgresql+psycopg2://", "postgresql://")
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
         
