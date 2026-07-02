@@ -70,3 +70,13 @@ O pipeline foi construído utilizando a **TaskFlow API** (`@dag` e `@task`) aten
 ## Acessos UIs
 - **Airflow UI**: [http://localhost:8080](http://localhost:8080) (Usuário: `admin` | Senha: `admin`)
 - **Flower UI**: [http://localhost:5555](http://localhost:5555)
+
+---
+
+## Geração de Relatório de Evidências em PDF
+
+Para compilar o relatório técnico de implantação com todas as evidências (incluindo imagens do grafo de sucesso na UI do Airflow, e dos painéis do Flower demonstrando 3, 5 e 2 workers), execute o seguinte comando:
+```bash
+python3 generate_pdf.py
+```
+Isso compilará o arquivo PDF **`relatorio_execucao_airflow_distribuido.pdf`** na raiz do projeto com formatação elegante e estruturada.
