@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Airflow local files
+logs/
+airflow.cfg
+airflow.db
+unittests.cfg
+
+# OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Local databases & credentials
+*.db
+*.sqlite
+.env
