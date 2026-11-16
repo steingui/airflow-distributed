@@ -35,6 +35,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    security_opt:
+      - no-new-privileges:true
 
   redis:
     image: redis:latest
@@ -45,6 +47,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    security_opt:
+      - no-new-privileges:true
 
   # Service to initialize database schema and create the admin user
   airflow-init:
@@ -56,6 +60,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
 
   airflow-webserver:
     <<: *airflow-common
@@ -75,6 +81,8 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
+    security_opt:
+      - no-new-privileges:true
 
   airflow-scheduler:
     <<: *airflow-common
@@ -87,6 +95,8 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
+    security_opt:
+      - no-new-privileges:true
 
   airflow-worker:
     <<: *airflow-common
@@ -99,6 +109,8 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
+    security_opt:
+      - no-new-privileges:true
 
   flower:
     <<: *airflow-common
@@ -113,6 +125,8 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
+    security_opt:
+      - no-new-privileges:true
 
 volumes:
   postgres-db-volume:
