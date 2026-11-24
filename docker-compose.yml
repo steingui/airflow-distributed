@@ -104,10 +104,10 @@ services:
     read_only: true
 
   airflow-worker:
-    <<:
-      <<: *airflow-common
-      security_opt:
-        - no-new-privileges:true
+    <<: *airflow-common
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
     command: celery worker
     depends_on:
       postgres:
@@ -117,12 +117,12 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
-    security_opt:
-      - no-new-privileges:true
-    read_only: true
 
   flower:
     <<: *airflow-common
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
     command: celery flower
     ports:
       - "5555:5555"
@@ -134,9 +134,6 @@ services:
       airflow-init:
         condition: service_completed_successfully
     restart: always
-    security_opt:
-      - no-new-privileges:true
-    read_only: true
 
 volumes:
   postgres-db-volume:
