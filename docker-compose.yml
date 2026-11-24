@@ -104,7 +104,10 @@ services:
     read_only: true
 
   airflow-worker:
-    <<: *airflow-common
+    <<:
+      <<: *airflow-common
+      security_opt:
+        - no-new-privileges:true
     command: celery worker
     depends_on:
       postgres:
